@@ -1,7 +1,9 @@
 import tkinter as tk
 from tkinter import messagebox
 import os
+import sys
 global canvas_width, canvas_height
+
 global b1, b2, b3, b4, b5, b6, b7, b8, b9
 game = [-1, -1, -1, -1, -1, -1, -1, -1, -1]
 player = 0
@@ -83,7 +85,7 @@ def check_winner():
         if result:
             # Start a new game or reset the game state here
             root.destroy()
-            os.startfile("tictactoe.py")
+            os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
         else:
             # Close the application or take appropriate action
             root.destroy()
@@ -114,9 +116,8 @@ def display_winner(row1, col1, row2, col2):
         
     result = messagebox.askyesno("WINNER!", f"Player {player_char} wins!\n\nDo you want to play again?")
     if result:
-        # Start a new game or reset the game state here
         root.destroy()
-        os.startfile("tictactoe.py")
+        os.execl(sys.executable, os.path.abspath(__file__), *sys.argv)
     else:
     # Close the application or take appropriate action
         root.destroy()
@@ -218,4 +219,3 @@ if __name__ == "__main__":
 
 
     tk.mainloop()
-
